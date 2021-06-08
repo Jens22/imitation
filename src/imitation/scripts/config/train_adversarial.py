@@ -21,10 +21,10 @@ def train_defaults():
     n_episodes_eval = 50  # Num of episodes for final mean ground truth return
 
     # Number of environments in VecEnv, must evenly divide gen_batch_size
-    num_vec = 8
+    num_vec = 1 #jw ros-gazebo can only one env (befor 8)
 
     # Use SubprocVecEnv rather than DummyVecEnv (generally faster if num_vec>1)
-    parallel = True
+    parallel = False #jw only one env so no need to parallelize
     max_episode_steps = None  # Set to positive int to limit episode horizons
 
     # Kwargs for initializing GAIL and AIRL
@@ -140,6 +140,12 @@ def pendulum():
     env_name = "Pendulum-v0"
     rollout_hint = "pendulum"
 
+#jw Gym_Gazebo2 environment named configs
+
+@train_ex.named_config 
+def turtlebot():
+    env_name = "Turtlebot3-v0"
+    rollout_hint = "turtlebot"
 
 # Standard MuJoCo Gym environment named configs
 
