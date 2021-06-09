@@ -15,6 +15,7 @@ from typing import (
 )
 
 import gym
+import gym_gazebo2
 import numpy as np
 import stable_baselines3
 from gym.wrappers import TimeLimit

@@ -21,16 +21,16 @@ def train_defaults():
     n_episodes_eval = 50  # Num of episodes for final mean ground truth return
 
     # Number of environments in VecEnv, must evenly divide gen_batch_size
-    num_vec = 8
+    num_vec = 1 #jw change from 8 to 1
 
     # Use SubprocVecEnv rather than DummyVecEnv (generally faster if num_vec>1)
-    parallel = True
+    parallel = False #jw change from True to Flase
     max_episode_steps = None  # Set to positive int to limit episode horizons
 
     # Kwargs for initializing GAIL and AIRL
     algorithm_kwargs = dict(
         shared=dict(
-            expert_batch_size=1024,  # Number of expert samples per discriminator update
+            expert_batch_size=1024,  #jw 1024 before change Number of expert samples per discriminator update
             # Number of discriminator updates after each round of generator updates
             n_disc_updates_per_round=4,
         ),
@@ -140,6 +140,11 @@ def pendulum():
     env_name = "Pendulum-v0"
     rollout_hint = "pendulum"
 
+
+@train_ex.named_config
+def turtlebot():
+    env_name = "Turtlebot3-v0"
+    rollout_hint = "turtlebot"
 
 # Standard MuJoCo Gym environment named configs
 

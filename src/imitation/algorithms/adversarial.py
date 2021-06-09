@@ -4,6 +4,7 @@ import os
 from typing import Callable, Dict, Iterable, Mapping, Optional, Type, Union
 
 import gym
+import gym_gazebo2
 import numpy as np
 import torch as th
 import torch.utils.data as th_data
