@@ -9,4 +9,4 @@ python -m imitation.scripts.train_adversarial with fast airl cartpole rollout_pa
 
 #Turtlebot3
 # Train GAIL from demonstrations. Tensorboard logs saved in output/ (default log directory).
-python -m imitation.scripts.train_adversarial with gail turtlebot rollout_path=turtlebot3/expert/final.pkl
+python3 -m imitation.scripts.train_adversarial with gail turtlebot rollout_path=turtlebot3/expert/final.pkl
