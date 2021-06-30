@@ -84,7 +84,8 @@ def make_vec_env(
         env.seed(int(this_seed))
 
         if max_episode_steps is not None:
-            env = TimeLimit(env, max_episode_steps)
+            #env = TimeLimit(env, max_episode_steps)
+            env.set_episode_size(max_episode_steps)
         elif spec.max_episode_steps is not None:
             env = TimeLimit(env, max_episode_steps=spec.max_episode_steps)
 

@@ -13,6 +13,7 @@ import os
 from typing import Callable, Tuple, Union
 
 import gym
+import gym_gazebo2
 import numpy as np
 import torch as th
 from stable_baselines3.common import utils

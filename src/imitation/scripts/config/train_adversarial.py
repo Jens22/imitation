@@ -14,7 +14,7 @@ train_ex = sacred.Experiment("train_adversarial", interactive=True)
 @train_ex.config
 def train_defaults():
     env_name = "CartPole-v1"  # environment to train on
-    total_timesteps = 1e5  # Num of environment transitions to sample
+    total_timesteps = 8e5  # Num of environment transitions to sample
     algorithm = "gail"  # Either "airl" or "gail"
 
     n_expert_demos = None  # Num demos used. None uses every demo possible
@@ -30,7 +30,7 @@ def train_defaults():
     # Kwargs for initializing GAIL and AIRL
     algorithm_kwargs = dict(
         shared=dict(
-            expert_batch_size=1024,  #jw 1024 before change Number of expert samples per discriminator update
+            expert_batch_size=2048,  #jw 1024 before change Number of expert samples per discriminator update
             # Number of discriminator updates after each round of generator updates
             n_disc_updates_per_round=4,
         ),
@@ -46,11 +46,11 @@ def train_defaults():
         policy_class=base.FeedForward32Policy,
         **DEFAULT_INIT_RL_KWARGS,
     )
-    gen_batch_size = 2048  # Batch size for generator updates
+    gen_batch_size = 4096  # Batch size for generator updates
 
     log_root = os.path.join("output", "train_adversarial")  # output directory
-    checkpoint_interval = 0  # Num epochs between checkpoints (<0 disables)
-    init_tensorboard = False  # If True, then write Tensorboard logs
+    checkpoint_interval = 20  # Num epochs between checkpoints (<0 disables)
+    init_tensorboard = True  # If True, then write Tensorboard logs
     rollout_hint = None  # Used to generate default rollout_path
     data_dir = "data/"  # Default data directory
 
@@ -146,6 +146,11 @@ def turtlebot():
     env_name = "Turtlebot3-v0"
     rollout_hint = "turtlebot"
 
+@train_ex.named_config
+def wheelchair():
+    env_name = "Wheelchair-v0"
+    rollout_hint = "wheelchair"
+    
 # Standard MuJoCo Gym environment named configs
 
 
@@ -256,5 +261,5 @@ def fast():
     max_episode_steps = 5
     # SB3 RL seems to need batch size of 2, otherwise it runs into numeric
     # issues when computing multinomial distribution during predict()
-    num_vec = 2
+    num_vec = 1
     init_rl_kwargs = dict(batch_size=2)

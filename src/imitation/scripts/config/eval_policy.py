@@ -9,7 +9,7 @@ eval_policy_ex = sacred.Experiment("eval_policy")
 
 @eval_policy_ex.config
 def replay_defaults():
-    env_name = "CartPole-v1"  # environment to evaluate in
+    env_name = "Turtlebot3-v0"  # environment to evaluate in
     eval_n_timesteps = int(1e4)  # Min timesteps to evaluate, optional.
     eval_n_episodes = None  # Num episodes to evaluate, optional.
     num_vec = 1  # number of environments in parallel
@@ -18,13 +18,14 @@ def replay_defaults():
 
     videos = False  # save video files
     video_kwargs = {}  # arguments to VideoWrapper
-    render = True  # render to screen
+    render = False  # render to screen
     render_fps = 60  # -1 to render at full speed
     log_root = os.path.join("output", "eval_policy")  # output directory
 
     policy_type = "ppo"  # class to load policy, see imitation.policies.loader
     policy_path = (
-        "tests/data/expert_models/" "cartpole_0/policies/final/"
+        "output/train_adversarial/Turtlebot3-v0/20210618_145500_431d57/checkpoints/final/gen_policy/"
+        #"output/train_adversarial/Turtlebot3-v0/20210607_124503_f9193a/checkpoints/final/gen_policy/"
     )  # serialized policy
 
     reward_type = None  # Optional: override with reward of this type
