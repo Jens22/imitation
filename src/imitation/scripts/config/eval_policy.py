@@ -10,7 +10,7 @@ eval_policy_ex = sacred.Experiment("eval_policy")
 @eval_policy_ex.config
 def replay_defaults():
     env_name = "Turtlebot3-v0"  # environment to evaluate in
-    eval_n_timesteps = int(1e4)  # Min timesteps to evaluate, optional.
+    eval_n_timesteps = int(2e4)  # Min timesteps to evaluate, optional.
     eval_n_episodes = None  # Num episodes to evaluate, optional.
     num_vec = 1  # number of environments in parallel
     parallel = False  # Use SubprocVecEnv (generally faster if num_vec>1)

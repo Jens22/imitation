@@ -14,7 +14,7 @@ train_ex = sacred.Experiment("train_adversarial", interactive=True)
 @train_ex.config
 def train_defaults():
     env_name = "CartPole-v1"  # environment to train on
-    total_timesteps = 8e5  # Num of environment transitions to sample
+    total_timesteps = 1e6  # Num of environment transitions to sample
     algorithm = "gail"  # Either "airl" or "gail"
 
     n_expert_demos = None  # Num demos used. None uses every demo possible
